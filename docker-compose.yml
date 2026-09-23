@@ -1,0 +1,73 @@
+services:
+
+  # ---------------------------------------------------------
+  # Pi-hole — network-wide DNS ad-blocking + local DNS
+  # Web UI: http://<host-ip>:8081/admin
+  # ---------------------------------------------------------
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    restart: unless-stopped
+    environment:
+      TZ: '${TZ}'
+      WEBPASSWORD: '${PIHOLE_WEBPASSWORD}'
+      FTLCONF_LOCAL_IPV4: '0.0.0.0'
+    volumes:
+      - ./pihole/etc-pihole:/etc/pihole
+      - ./pihole/etc-dnsmasq.d:/etc/dnsmasq.d
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "8081:80/tcp"     # web UI moved to 8081 to avoid clashing with systemd-resolved
+    cap_add:
+      - NET_ADMIN
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+
+  # ---------------------------------------------------------
+  # Jellyfin — media server
+  # Web UI: http://<host-ip>:8096
+  # ---------------------------------------------------------
+  jellyfin:
+    container_name: jellyfin
+    image: jellyfin/jellyfin:latest
+    restart: unless-stopped
+    environment:
+      TZ: '${TZ}'
+    volumes:
+      - ./jellyfin/config:/config
+      - ./jellyfin/cache:/cache
+      - '${MEDIA_PATH}:/media'
+    ports:
+      - "8096:8096"
+
+  # ---------------------------------------------------------
+  # Vaultwarden — self-hosted Bitwarden-compatible password manager
+  # Web UI: http://<host-ip>:8082  (needs HTTPS to create an account —
+  # see docs/REMOTE-ACCESS.md)
+  # ---------------------------------------------------------
+  vaultwarden:
+    container_name: vaultwarden
+    image: vaultwarden/server:latest
+    restart: unless-stopped
+    environment:
+      WEBSOCKET_ENABLED: 'true'
+      SIGNUPS_ALLOWED: 'true'    # set to 'false' once your account exists
+    volumes:
+      - ./vaultwarden/data:/data
+    ports:
+      - "8082:80"
+
+  # ---------------------------------------------------------
+  # Uptime Kuma — status dashboard for everything above
+  # Web UI: http://<host-ip>:3001
+  # ---------------------------------------------------------
+  uptime-kuma:
+    container_name: uptime-kuma
+    image: louislam/uptime-kuma:latest
+    restart: unless-stopped
+    volumes:
+      - ./uptime-kuma/data:/app/data
+    ports:
+      - "3001:3001"
