@@ -17,7 +17,7 @@ happens — a DNS port conflict, a container that silently kept a stale
 network config after a failed run, a two-sided HTTPS requirement that a
 client-side workaround only half-fixed, a mesh router that took the whole
 house offline when DNS was pointed at a single host. Each of those is
-written up in [`docs/TROUBLESHOOTING.md`](docs/TROUBLESHOOTING.md) as
+written up in [`TROUBLESHOOTING.md`](TROUBLESHOOTING.md) as
 symptom → diagnosis → fix → lesson, because that's the part of the work
 worth showing.
 
