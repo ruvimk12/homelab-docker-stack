@@ -90,7 +90,7 @@ All four run as containers defined in a single [`docker-compose.yml`](docker-com
 
 ```bash
 git clone <this-repo-url>
-cd homelab
+cd homelab-docker-stack
 cp .env.example .env      # then edit .env with your own values
 docker compose up -d
 ```
