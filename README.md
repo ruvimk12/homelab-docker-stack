@@ -75,14 +75,13 @@ All four run as containers defined in a single [`docker-compose.yml`](docker-com
 
 ```
 .
-├── README.md                   this file
-├── docker-compose.yml          the full stack definition
-├── .env.example                template for secrets/config (copy to .env)
-├── docs/
-│   ├── SETUP.md                 first-time install, start to finish
-│   ├── ADDING-STORAGE.md         mounting a new drive & what to build on it
-│   ├── REMOTE-ACCESS.md          Tailscale + HTTPS + Samba over Tailscale
-│   └── TROUBLESHOOTING.md        real issues hit during setup, and the fix
+├── README.md             this file
+├── docker-compose.yml    the full stack definition
+├── .env.example          template for secrets/config (copy to .env)
+├── SETUP.md              first-time install, start to finish
+├── ADDING-STORAGE.md     mounting a new drive & what to build on it
+├── REMOTE-ACCESS.md      Tailscale + HTTPS + Samba over Tailscale
+├── TROUBLESHOOTING.md    real issues hit during setup, and the fix
 └── LICENSE
 ```
 
