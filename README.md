@@ -89,14 +89,14 @@ All four run as containers defined in a single [`docker-compose.yml`](docker-com
 ## Quick start
 
 ```bash
-git clone <this-repo-url>
+git clone https://github.com/<your-username>/homelab-docker-stack.git
 cd homelab-docker-stack
 cp .env.example .env      # then edit .env with your own values
 docker compose up -d
 ```
 
 Full walkthrough, including OS-level prerequisites (Docker install, DNS port
-conflict, firewall) in [`docs/SETUP.md`](docs/SETUP.md).
+conflict, firewall) in [SETUP.md](SETUP.md).
 
 ## Notes on this being public
 
