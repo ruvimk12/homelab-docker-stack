@@ -1,0 +1,6 @@
+.env
+pihole/
+jellyfin/
+vaultwarden/
+uptime-kuma/
+media/
